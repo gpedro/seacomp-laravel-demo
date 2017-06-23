@@ -1,11 +1,6 @@
 @extends('layouts.master')
 
-@php
-    $types = [
-        'abstract', 'animals', 'business', 'cats', 'city', 'food', 'night',
-        'life', 'fashion', 'people', 'nature', 'sports', 'technics', 'transport'
-    ];
-@endphp
+@inject('lorempixel', '\App\Http\Services\RandomImage')
 
 @section('title')
     Últimas Notícias - {{ config('app.name') }}
@@ -20,11 +15,7 @@
             @foreach($news as $news)
                 <div class="row">
                     <div class="col-md-3">
-                        @php
-                        shuffle($types);
-                        $type = $types[0];
-                        @endphp
-                        <img src="http://lorempixel.com/200/200/{{ $type }}" class="img-responsive" alt="{{ $news->title }}">
+                        <img src="{{ $lorempixel->get() }}" class="img-responsive" alt="{{ $news->title }}">
                     </div>
                     <div class="col-md-9">
                         <div class="row">
@@ -38,7 +29,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12 text-right">
-                                <a href="{{ route('news.show', $news->slug) }}" class="btn btn-primary">Leia Mais</a>
+                                <a href="{{ route('home.news', $news->slug) }}" class="btn btn-primary">Leia Mais</a>
                             </div>
                         </div>
                     </div>

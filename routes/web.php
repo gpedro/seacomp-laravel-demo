@@ -11,5 +11,13 @@
 |
 */
 
-Route::get('/', 'NewsController@index')->name('news.index');
-Route::get('/{slug}', 'NewsController@show')->name('news.show');
+
+Route::get('/news', 'NewsController@index')->name('news.index');
+Route::get('/news/create', 'NewsController@create')->name('news.create');
+Route::post('/news/store', 'NewsController@store')->name('news.store');
+Route::get('/news/{news}/show', 'NewsController@show')->name('news.show');
+Route::get('/news/{news}/edit', 'NewsController@edit')->name('news.edit');
+Route::put('/news/{news}/update', 'NewsController@update')->name('news.update');
+
+Route::get('/', 'HomeController@index')->name('home.index');
+Route::get('/{slug}', 'HomeController@show')->name('home.news');
