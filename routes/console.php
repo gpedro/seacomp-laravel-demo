@@ -13,6 +13,7 @@ use Illuminate\Foundation\Inspiring;
 |
 */
 
-Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
-})->describe('Display an inspiring quote');
+Artisan::command('time', function () {
+    $now = \Carbon\Carbon::now()->format('d/m/Y H:i:s');
+    $this->comment('IIIIIITS TIIIIME! ' . $now);
+})->describe('Display current time on env');
